@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
@@ -8,11 +9,16 @@ export default function Hero() {
         <div className="container py-24 lg:py-32">
           {/* Announcement Banner */}
           <div className="flex justify-center">
-            <a
+            <Link
               className="inline-flex items-center gap-x-2 border text-sm p-1 ps-3 rounded-full transition"
-              href="#"
+              href="/my-bar"
             >
-              PRO release - Join to waitlist
+              <span role="img" aria-label="beers" className="text-xl">
+                🍻 
+              </span>
+              <span className="text-muted-foreground">
+                Start your bar now
+              </span>
               <span className="py-1.5 px-2.5 inline-flex justify-center items-center gap-x-2 rounded-full bg-muted-foreground/15 font-semibold text-sm">
                 <svg
                   className="flex-shrink-0 w-4 h-4"
@@ -29,13 +35,13 @@ export default function Hero() {
                   <path d="m9 18 6-6-6-6" />
                 </svg>
               </span>
-            </a>
+            </Link>
           </div>
           {/* End Announcement Banner */}
           {/* Title */}
-          <div className="mt-5 max-w-3xl text-center mx-auto">
-            <h1 className="font-mono scroll-m-20 text-4xl font-black tracking-tight !leading-tight lg:text-5xl">
-              simple and elegant way to <strong>share your drink collection</strong> with your guests
+          <div className="mt-5 max-w-4xl text-center mx-auto">
+            <h1 className="font-mono text-4xl font-black tracking-tight !leading-tight lg:text-5xl bg-gradient-to-tl from-black to-secondary-foreground/70 bg-clip-text text-transparent dark:from-white dark:to-white/70">
+              easy and elegant approach to <strong className="block">share your drink collection</strong> to your guests
             </h1>
           </div>
           {/* End Title */}
@@ -47,8 +53,8 @@ export default function Hero() {
           </div>
           {/* Buttons */}
           <div className="mt-8 gap-3 flex justify-center">
-            <Button size={"lg"}>Get started</Button>
-            <Button size={"lg"} variant={"outline"}>
+            <Button>Get started</Button>
+            <Button variant={"outline"}>
               Learn more
             </Button>
           </div>
