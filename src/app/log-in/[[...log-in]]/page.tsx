@@ -7,39 +7,22 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Icons } from '@/components/ui/icons';
-import { cn } from '@/lib/utils';
 
 export default function SignInPage() {
   return (
-    <div className="grid w-full grow items-center px-4 sm:justify-center">
+    <div className="grid w-full flex-1 flex-grow py-8 items-center px-4 sm:justify-center">
       <SignIn.Root>
         <Clerk.Loading>
           {(isGlobalLoading) => (
             <>
               <SignIn.Step name="start">
-                <Card className="w-full sm:w-96">
+                <Card className="w-full sm:w-96 bg-white/30 dark:bg-black/30">
                   <CardHeader>
                     <CardTitle>Sign in to Golden Bartender</CardTitle>
                     <CardDescription>Welcome back! Please sign in to continue</CardDescription>
                   </CardHeader>
                   <CardContent className="grid gap-y-4">
                     <div className="grid grid-cols-2 gap-x-4">
-                      <Clerk.Connection name="facebook" asChild>
-                        <Button size="sm" variant="outline" type="button" disabled={isGlobalLoading}>
-                          <Clerk.Loading scope="provider:facebook">
-                            {(isLoading) =>
-                              isLoading ? (
-                                <Icons.spinner className="size-4 animate-spin" />
-                              ) : (
-                                <>
-                                  {/* <Icons.facebook className="mr-2 size-4" /> */}
-                                  Facebook
-                                </>
-                              )
-                            }
-                          </Clerk.Loading>
-                        </Button>
-                      </Clerk.Connection>
                       <Clerk.Connection name="google" asChild>
                         <Button size="sm" variant="outline" type="button" disabled={isGlobalLoading}>
                           <Clerk.Loading scope="provider:google">
@@ -50,6 +33,22 @@ export default function SignInPage() {
                                 <>
                                   <Icons.google className="mr-2 size-4" />
                                   Google
+                                </>
+                              )
+                            }
+                          </Clerk.Loading>
+                        </Button>
+                      </Clerk.Connection>
+                      <Clerk.Connection name="facebook" asChild>
+                        <Button size="sm" className="bg-[#1877f2] hover:bg-[#1877f2]/85 text-white" type="button" disabled={isGlobalLoading}>
+                          <Clerk.Loading scope="provider:facebook">
+                            {(isLoading) =>
+                              isLoading ? (
+                                <Icons.spinner className="size-4 animate-spin" />
+                              ) : (
+                                <>
+                                  <Icons.facebook className="mr-2 size-4" />
+                                  Facebook
                                 </>
                               )
                             }
@@ -91,7 +90,7 @@ export default function SignInPage() {
               </SignIn.Step>
 
               <SignIn.Step name="choose-strategy">
-                <Card className="w-full sm:w-96">
+                <Card className="w-full sm:w-96 bg-white/30 dark:bg-black/30">
                   <CardHeader>
                     <CardTitle>Use another method</CardTitle>
                     <CardDescription>Facing issues? You can use any of these methods to sign in.</CardDescription>
@@ -126,7 +125,7 @@ export default function SignInPage() {
 
               <SignIn.Step name="verifications">
                 <SignIn.Strategy name="password">
-                  <Card className="w-full sm:w-96">
+                  <Card className="w-full sm:w-96 bg-white/30 dark:bg-black/30">
                     <CardHeader>
                       <CardTitle>Check your email</CardTitle>
                       <CardDescription>Enter the verification code sent to your email</CardDescription>
@@ -167,7 +166,7 @@ export default function SignInPage() {
                 </SignIn.Strategy>
 
                 <SignIn.Strategy name="email_code">
-                  <Card className="w-full sm:w-96">
+                  <Card className="w-full sm:w-96 bg-white/30 dark:bg-black/30">
                     <CardHeader>
                       <CardTitle>Check your email</CardTitle>
                       <CardDescription>Enter the verification code sent to your email</CardDescription>
