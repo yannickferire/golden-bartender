@@ -1,11 +1,18 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ModeToggle } from "./ModeToggle";
 import { Button } from "./ui/button";
 import Logo from "./Logo";
 
-import { SignInButton, SignOutButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function Header() {
+  const pathname = usePathname();
+  const isSignUpPage = pathname === "/sign-up";
+  const isLogInPage = pathname === "/log-in";
+
   return (
     <header className="w-full max-w-screen-xl flex justify-between items-center">
       <Link href="/" className="flex space-x-2 items-center">
@@ -16,9 +23,9 @@ export default function Header() {
       <div className="flex items-center space-x-2">
         <SignedOut>
           <SignInButton>
-            <Button variant="linkHover2">Login</Button>
+            <Button variant="linkHover2" disabled={isLogInPage}>Login</Button>
           </SignInButton>
-          <Button variant="shine"><SignUpButton /></Button>
+          <Button variant="shine" disabled={isSignUpPage}><SignUpButton /></Button>
         </SignedOut>
         <SignedIn>
           <UserButton />
