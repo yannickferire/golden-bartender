@@ -10,16 +10,23 @@ import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@cl
 
 export default function Header() {
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const isSignUpPage = pathname === "/sign-up";
   const isLogInPage = pathname === "/log-in";
+  const isMyBarPage = pathname === "/my-bar";
 
   return (
     <header className="w-full max-w-screen-xl flex justify-between items-center">
+      <div className="flex items-center space-x-16">
       <Link href="/" className="flex space-x-2 items-center">
         <Logo size={60} />
         <h1 className="font-bold text-xl leading-5">Golden<br/>Bartender</h1>
       </Link>
-      <Link href="/my-bar">My Bar</Link>
+      <ul className="flex">
+        <li><Link href="/"><Button className="font-bold" variant="linkHover2" disabled={isHomePage}>Home</Button></Link></li>
+        <li><Link href="/my-bar"><Button className="font-bold" variant="linkHover2" disabled={isMyBarPage}>My Bar</Button></Link></li>
+      </ul>
+      </div>
       <div className="flex items-center space-x-2">
         <SignedOut>
           <SignInButton>
