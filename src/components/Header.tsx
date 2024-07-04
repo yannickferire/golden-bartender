@@ -1,8 +1,9 @@
-import Image from "next/image";
-
 import { ModeToggle } from "./ModeToggle";
 import { Button } from "./ui/button";
 import Logo from "./Logo";
+
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { Sign } from "crypto";
 
 export default function Header() {
   return (
@@ -12,8 +13,11 @@ export default function Header() {
         <h1 className="font-bold text-xl leading-5">Golden<br/>Bartender</h1>
       </div>
       <div className="flex space-x-2">
-        <Button variant="linkHover2">Login</Button>
-        <Button variant="shine">Sign up</Button>
+        <SignedOut>
+          <Button variant="linkHover2">Login</Button>
+          <Button variant="shine">Sign up</Button>
+          <SignInButton />
+        </SignedOut>
         <ModeToggle />
       </div>
     </header>
