@@ -33,9 +33,9 @@ export default function Hero() {
           </div>
           {/* End Announcement Banner */}
           {/* Title */}
-          <div className="mt-5 max-w-2xl text-center mx-auto">
-            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-              Let&apos;s Build Together
+          <div className="mt-5 max-w-3xl text-center mx-auto">
+            <h1 className="font-mono scroll-m-20 text-4xl font-black tracking-tight !leading-tight lg:text-5xl">
+              simple and elegant way to <strong>share your drink collection</strong> with your guests
             </h1>
           </div>
           {/* End Title */}

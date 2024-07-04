@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider"
-import { Inter as FontSans } from "next/font/google";
+import { Inter as FontSans, Spline_Sans_Mono as FontMono } from "next/font/google";
 import "../styles/globals.css";
 
 import { ClerkProvider } from '@clerk/nextjs';
@@ -9,6 +9,11 @@ import Header from "@/components/Header";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
+})
+const fontMono = FontMono({
+  weight: ['400', '700'],
+  subsets: ["latin"],
+  variable: "--font-mono",
 })
 
 import { cn } from "@/lib/utils"
@@ -30,7 +35,8 @@ export default function RootLayout({
         <body 
           className={cn(
             "bg-background font-sans antialiased",
-            fontSans.variable
+            fontSans.variable,
+            fontMono.variable
           )}
         >
           <ThemeProvider

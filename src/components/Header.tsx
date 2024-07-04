@@ -18,9 +18,9 @@ export default function Header() {
   return (
     <header className="w-full max-w-screen-xl flex justify-between items-center">
       <div className="flex items-center space-x-16">
-      <Link href="/" className="flex space-x-2 items-center">
+      <Link href="/" className="flex space-x-3 items-center">
         <Logo size={60} />
-        <h1 className="font-bold text-xl leading-5">Golden<br/>Bartender</h1>
+        <h1 className="font-mono font-bold tracking-wide text-lg leading-5">Golden<br/>Bartender</h1>
       </Link>
       <ul className="flex">
         <li><Link href="/"><Button className="font-bold" variant="linkHover2" disabled={isHomePage}>Home</Button></Link></li>
