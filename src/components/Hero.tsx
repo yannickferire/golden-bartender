@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+
 export default function Hero() {
   return (
     <>
@@ -17,7 +19,12 @@ export default function Hero() {
                 🍻 
               </span>
               <span className="text-muted-foreground">
-                Start your bar now
+                <SignedOut>
+                  Start now! Get 14 days free trial
+                </SignedOut>
+                <SignedIn>
+                  Head to your bar
+                </SignedIn>
               </span>
               <span className="py-1.5 px-2.5 inline-flex justify-center items-center gap-x-2 rounded-full bg-muted-foreground/15 font-semibold text-sm">
                 <svg
