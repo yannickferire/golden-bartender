@@ -4,8 +4,16 @@ import { useEffect, useState } from 'react';
 
 type FetchError = Error | null;
 
+interface UserData {
+  id: string;
+  email: string;
+  firstname: string;
+  lastname: string;
+  username: string;
+}
+
 export default function MyBar() {
-  const [data, setData] = useState(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<FetchError>(null);
 
@@ -17,7 +25,11 @@ export default function MyBar() {
           throw new Error('Network response was not ok');
         }
         const result = await response.json();
-        setData(result.data);
+        if (result.data && result.data.userData) {
+          setUserData(result.data.userData);
+        } else {
+          throw new Error('Invalid API response format');
+        }
       } catch (error) {
         setError(error as Error);
       } finally {
@@ -33,8 +45,7 @@ export default function MyBar() {
 
   return (
     <div className="grid w-full flex-1 flex-grow py-8 items-center px-4 sm:justify-center">
-      <h1>MY BAR</h1>
-      {data && <p>{JSON.stringify(data)}</p>}
+      {userData && <p>Hello {userData.firstname}</p>}
     </div>
   );
 }

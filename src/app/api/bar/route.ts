@@ -1,34 +1,35 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs/server';
+import { auth, currentUser } from '@clerk/nextjs/server';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 export async function GET() {
-  console.log('API request received');
 
   const { userId } = auth();
-  console.log('userId:', userId);
 
   if (!userId) {
     return new NextResponse('User is not signed in.', { status: 401 });
   }
 
   try {
-    // Rechercher l'utilisateur par ID
+    // find user by ID
     let user = await prisma.user.findUnique({
       where: {
         id: userId,
       },
     });
 
-    // Si l'utilisateur n'existe pas, créez un nouvel utilisateur
+    // if user not found, create new user
     if (!user) {
+      const newUser: any = await currentUser();
       user = await prisma.user.create({
         data: {
           id: userId,
-          email: "",
-          name: "",
+          email: newUser?.emailAddress || "", /* not working */
+          firstname: newUser?.firstName || "",
+          lastname: newUser?.lastname || "", /* not working */
+          username: newUser?.username || "",
         },
       });
       console.log('New user created:', user);
