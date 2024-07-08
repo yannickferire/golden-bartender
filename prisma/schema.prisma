@@ -17,4 +17,23 @@ model User {
   id    String  @id @default(uuid())
   email String? @unique
   name  String?
+
+  drinks Drink[] @relation("UserDrinks")
+}
+
+model Drink {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+
+  userId String
+  owner  User   @relation("UserDrinks", fields: [userId], references: [id])
+
+  categories Category[]
+}
+
+model Category {
+  id     String  @id @default(uuid())
+  name   String  @unique
+  drinks Drink[]
 }
