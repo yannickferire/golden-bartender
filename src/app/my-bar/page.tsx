@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import MenuEmpty from './components/MenuEmpty';
 
 type FetchError = Error | null;
 
@@ -44,8 +45,16 @@ export default function MyBar() {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="grid w-full flex-1 flex-grow py-8 items-center px-4 sm:justify-center">
-      {userData && <p>Hello {userData.firstname}</p>}
+    <div className="w-full max-w-screen-xl pt-12 pb-8">
+      {userData && 
+      <>
+        <header className="mb-8">
+          <p className="text-xl font-mono font-bold">Hey {userData.firstname}</p>
+          <p>Manage all your drinks here</p>
+        </header>
+        <MenuEmpty />
+      </>  
+      }
     </div>
   );
 }
