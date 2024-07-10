@@ -16,7 +16,7 @@ export default function Header() {
   const isMyBarPage = pathname === "/my-bar";
 
   return (
-    <header className="w-full max-w-screen-xl flex justify-between items-center">
+    <header className="w-full flex justify-between items-center">
       <div className="flex items-center space-x-16">
       <Link href="/" className="flex space-x-3 items-center">
         <Logo size={60} />
