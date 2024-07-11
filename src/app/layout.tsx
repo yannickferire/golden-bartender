@@ -4,6 +4,7 @@ import { Inter as FontSans, Spline_Sans_Mono as FontMono } from "next/font/googl
 import "../styles/globals.css";
 
 import { ClerkProvider } from '@clerk/nextjs';
+import { Toaster } from "@/components/ui/sonner"
 import Header from "@/components/Header";
 
 const fontSans = FontSans({
@@ -50,6 +51,7 @@ export default function RootLayout({
               <Header />
               {children}
             </main>
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>
