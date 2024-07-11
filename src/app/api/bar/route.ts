@@ -5,7 +5,6 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export async function GET() {
-
   const { userId } = auth();
 
   if (!userId) {
@@ -26,9 +25,9 @@ export async function GET() {
       user = await prisma.user.create({
         data: {
           id: userId,
-          email: newUser?.emailAddress || "", /* not working */
+          email: newUser?.emailAddress || "",
           firstname: newUser?.firstName || "",
-          lastname: newUser?.lastname || "", /* not working */
+          lastname: newUser?.lastName || "",
           username: newUser?.username || "",
         },
       });
@@ -37,11 +36,17 @@ export async function GET() {
       console.log('Existing user found:', user);
     }
 
-    const data = {
-      userData: user,
-    };
+    // fetch drinks associated with the user
+    const drinks = await prisma.drink.findMany({
+      where: {
+        userId: userId,
+      },
+    });
 
-    return NextResponse.json({ data });
+    return NextResponse.json({
+      userData: user,
+      drinks: drinks,
+    });
   } catch (error) {
     console.error(error);
     return new NextResponse('An error occurred while fetching data.', { status: 500 });
