@@ -52,7 +52,7 @@ export default function MyBar() {
           <p className="text-xl font-mono font-bold">Hey {userData.firstname}</p>
           <p>Manage all your drinks here</p>
         </header>
-        <MenuEmpty />
+        <MenuEmpty userId={userData.id} />
       </>  
       }
     </div>

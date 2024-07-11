@@ -31,11 +31,11 @@ model Drink {
   userId String
   owner  User   @relation("UserDrinks", fields: [userId], references: [id])
 
-  categories Category[]
+  // categories Category[]
 }
 
-model Category {
-  id     String  @id @default(uuid())
-  name   String  @unique
-  drinks Drink[]
-}
+// model Category {
+//   id     String  @id @default(uuid())
+//   name   String  @unique
+//   drinks Drink[]
+// }
