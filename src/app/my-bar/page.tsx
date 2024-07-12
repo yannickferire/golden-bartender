@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import MenuEmpty from './components/MenuEmpty';
 import { Drinks, columns } from "./drinks/columns"
 import { DataTable } from './drinks/data-table';
+import AddDrink from './components/AddDrink';
 
 type FetchError = Error | null;
 
@@ -15,7 +16,7 @@ interface UserData {
   username: string;
 }
 
-interface DrinkData {
+export interface DrinkData {
   id: string;
   name: string;
   description: string;
@@ -57,6 +58,14 @@ export default function MyBar() {
     fetchData();
   }, []);
 
+  const handleAddDrink = async (newDrink: DrinkData) => {
+    try {
+      setDrinks((prevDrinks) => [...prevDrinks, newDrink]);
+    } catch (error) {
+      console.error('Error adding drink:', error);
+    }
+  };
+
   const handleDelete = async (id: string) => {
     try {
       const response = await fetch(`/api/delete-drink`, {
@@ -90,9 +99,12 @@ export default function MyBar() {
             <p>Manage all your drinks here</p>
           </header>
           {drinks.length === 0 ? (
-            <MenuEmpty userId={userData.id} />
+            <MenuEmpty userId={userData.id} onAddDrink={handleAddDrink} />
           ) : (
+            <>
+            <AddDrink userId={userData.id} onAddDrink={handleAddDrink} />
             <DataTable columns={columns({ onDelete: handleDelete })} data={drinks} />
+            </>
           )}
         </>
       )}
