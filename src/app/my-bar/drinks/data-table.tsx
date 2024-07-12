@@ -28,7 +28,7 @@ export function DataTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({})
- 
+
   const table = useReactTable({
     data,
     columns,

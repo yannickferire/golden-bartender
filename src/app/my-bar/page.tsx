@@ -57,6 +57,27 @@ export default function MyBar() {
     fetchData();
   }, []);
 
+  const handleDelete = async (id: string) => {
+    try {
+      const response = await fetch(`/api/delete-drink`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete drink');
+      }
+
+      // Remove the drink from the local state
+      setDrinks((prevDrinks) => prevDrinks.filter((drink) => drink.id !== id));
+    } catch (error) {
+      console.error('Error deleting drink:', error);
+    }
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
@@ -71,7 +92,7 @@ export default function MyBar() {
           {drinks.length === 0 ? (
             <MenuEmpty userId={userData.id} />
           ) : (
-            <DataTable columns={columns} data={drinks} />
+            <DataTable columns={columns({ onDelete: handleDelete })} data={drinks} />
           )}
         </>
       )}

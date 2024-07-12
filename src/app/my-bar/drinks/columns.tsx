@@ -13,7 +13,11 @@ export type Drinks = {
   description?: string
 }
 
-export const columns: ColumnDef<Drinks>[] = [
+export type Actions = {
+  onDelete: (id: string) => void
+}
+
+export const columns = (actions: Actions): ColumnDef<Drinks>[] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -44,7 +48,8 @@ export const columns: ColumnDef<Drinks>[] = [
   },
   {
     id: "actions",
-    cell: () => {
+    cell: ({ row }) => {
+      const drink = row.original
       return (
         <div className="text-right opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           <Button
@@ -60,7 +65,7 @@ export const columns: ColumnDef<Drinks>[] = [
             variant="outline"
             size="icon"
             onClick={() => {
-              console.log("Delete drink")
+              actions.onDelete(drink.id)
             }}
           ><TrashIcon className="w-5 h-5 text-destructive" /></Button>
         </div>
