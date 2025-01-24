@@ -1,7 +1,11 @@
+import Header from "./components/layout/header";
+import Hero from "./components/hero/hero";
+
 export default function Home() {
   return (
-    <div>
-      <h1 className="font-mono font-black text-2xl">Golden Bartender</h1>
+    <div className="p-4">
+      <Header />
+      <Hero />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter as FontSans, Spline_Sans_Mono as FontMono } from "next/font/google";
+import { Source_Code_Pro as FontSans, Spline_Sans_Mono as FontMono } from "next/font/google";
 import "./globals.css";
 
 const fontSans = FontSans({
